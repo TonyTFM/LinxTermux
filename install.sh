@@ -1,30 +1,40 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-echo "================================"
-echo "      LINX INSTALLER"
-echo "================================"
+echo "=================================="
+echo "     LINX ULTRA INSTALLER"
+echo "=================================="
 
-# Safety check
+# --- SAFETY CHECK ---
 if [ "$(pwd)" = "/" ]; then
   echo "❌ Do not run in system root"
   exit 1
 fi
 
-# Install folder
-INSTALL_DIR="$HOME/.local/bin"
+# --- INSTALL DIR ---
+BIN="$HOME/.local/bin"
+mkdir -p "$BIN"
 
-mkdir -p "$INSTALL_DIR"
+# --- COPY FILES ---
+echo "📦 Installing LINX..."
 
-cp linxtermux.sh "$INSTALL_DIR/linx" 2>/dev/null
-cp mint-terminal.sh "$INSTALL_DIR/mint" 2>/dev/null
+cp linxtermux.sh "$BIN/linx" 2>/dev/null
+cp mint-terminal.sh "$BIN/mint" 2>/dev/null
 
-chmod +x "$INSTALL_DIR/linx"
-chmod +x "$INSTALL_DIR/mint"
+chmod +x "$BIN/linx"
+chmod +x "$BIN/mint"
 
-# PATH fix
+# --- PATH FIX ---
 if ! echo "$PATH" | grep -q ".local/bin"; then
   echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+  export PATH="$HOME/.local/bin:$PATH"
 fi
 
-echo "✅ LINX installed successfully"
-echo "👉 restart terminal and type: linx"
+# --- VERIFY ---
+if command -v linx >/dev/null 2>&1; then
+  echo "=================================="
+  echo "✅ LINX INSTALLED SUCCESSFULLY"
+  echo "👉 type: linx"
+  echo "=================================="
+else
+  echo "⚠ install complete but PATH not active"
+fi
