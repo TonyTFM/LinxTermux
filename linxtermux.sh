@@ -2,15 +2,42 @@
 
 clear
 
-echo "=================================="
-echo "         LINXTERMUX"
-echo "=================================="
+echo "=========================="
+echo "       LINX TERMINAL"
+echo "=========================="
 echo ""
 
-if [ -f ~/linxtermux-info ]; then
-    cat ~/linxtermux-info
-fi
+echo "1) Debian"
+echo "2) Ubuntu"
+echo "3) System Info"
+echo "4) Repair"
+echo "q) Exit"
+echo ""
 
-echo ""
-echo "Willkommen im Linux-Modus"
-echo ""
+read -p "Select: " c
+
+repair() {
+  unset PROOT_INFO PROOT_LOADER
+  hash -r
+  echo "✅ repaired"
+}
+
+case $c in
+1)
+  proot-distro login debian
+  ;;
+2)
+  proot-distro login ubuntu
+  ;;
+3)
+  echo "User: $(whoami)"
+  echo "Home: $HOME"
+  echo "Prefix: $PREFIX"
+  ;;
+4)
+  repair
+  ;;
+q)
+  exit
+  ;;
+esac
