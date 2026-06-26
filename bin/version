@@ -3,8 +3,5 @@
 source "$HOME/LinxMint/lib/core.sh"
 
 load_config
-header
 
-echo "Starte $DISTRO..."
-
-exec proot-distro login "$DISTRO"
+echo "$NAME $VERSION"

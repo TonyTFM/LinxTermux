@@ -1,0 +1,25 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+echo "=== LinxMint Doctor ==="
+echo
+
+echo -n "proot-distro: "
+if command -v proot-distro >/dev/null; then
+    echo "OK"
+else
+    echo "NICHT GEFUNDEN"
+fi
+
+echo -n "Debian: "
+if proot-distro list | grep -q "^debian"; then
+    echo "OK"
+else
+    echo "NICHT INSTALLIERT"
+fi
+
+echo -n "Fastfetch: "
+if proot-distro login debian -- fastfetch >/dev/null 2>&1; then
+    echo "OK"
+else
+    echo "NICHT INSTALLIERT"
+fi

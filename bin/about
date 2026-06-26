@@ -1,0 +1,16 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+source "$HOME/LinxMint/lib/core.sh"
+
+load_config
+header
+
+cat << EOF
+Projekt : $NAME
+Version : $VERSION
+Distro  : $DISTRO
+Theme   : $THEME
+
+LinxMint ist eine Terminal-Umgebung für Termux,
+die den Einstieg in eine Linux-Umgebung vereinfachen soll.
+EOF
