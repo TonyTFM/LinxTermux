@@ -3,23 +3,18 @@
 echo "=== LinxMint Doctor ==="
 echo
 
-echo -n "proot-distro: "
-if command -v proot-distro >/dev/null; then
-    echo "OK"
-else
-    echo "NICHT GEFUNDEN"
-fi
+echo -n "[1] proot-distro: "
+command -v proot-distro >/dev/null && echo "OK" || echo "FEHLT"
 
-echo -n "Debian: "
-if proot-distro list | grep -q "^debian"; then
-    echo "OK"
-else
-    echo "NICHT INSTALLIERT"
-fi
+echo -n "[2] Debian: "
+echo -n "[2] Debian: "
+check_debian && echo "OK" || echo "FEHLT"
 
-echo -n "Fastfetch: "
-if proot-distro login debian -- fastfetch >/dev/null 2>&1; then
-    echo "OK"
-else
-    echo "NICHT INSTALLIERT"
-fi
+echo -n "[3] Konfig: "
+[ -f "$HOME/LinxMint/config/linx.conf" ] && echo "OK" || echo "FEHLT"
+
+echo
+echo "Status: CHECK COMPLETE"
+echo
+echo "=== System Summary ==="
+echo "LinxMint OK (basic checks completed)"

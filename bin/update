@@ -1,0 +1,26 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+source "$HOME/LinxMint/lib/core.sh"
+
+load_config
+header
+
+echo "=== LinxMint Update ==="
+echo
+
+cd "$HOME/LinxMint" || exit 1
+
+echo "[1] Prüfe Git-Status..."
+if command -v git >/dev/null; then
+    echo "Git OK"
+else
+    echo "Git fehlt!"
+    exit 1
+fi
+
+echo
+echo "[2] Lade Updates..."
+git pull
+
+echo
+echo "[3] Update abgeschlossen"

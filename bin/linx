@@ -3,8 +3,35 @@
 source "$HOME/LinxMint/lib/core.sh"
 
 load_config
+DEBUG=${DEBUG:-0}
+
 header
 
+echo "Prüfe System..."
+echo
+
+if [ "$DEBUG" -eq 1 ]; then
+    echo "[DEBUG] CONFIG: $CONFIG"
+    echo "[DEBUG] DISTRO: $DISTRO"
+    echo "[DEBUG] THEME: $THEME"
+fi
+# Check 1: proot-distro
+if ! command -v proot-distro >/dev/null; then
+    echo "[FEHLER] proot-distro fehlt"
+    exit 1
+fi
+
+# Check 2: Debian
+if ! check_debian; then
+    echo "[FEHLER] Debian fehlt"
+    echo "Starte Doctor..."
+    "$HOME/LinxMint/bin/doctor"
+    exit 1
+fi
+
+# Alles OK
+echo "[OK] System bereit"
 echo "Starte $DISTRO..."
+sleep 1
 
 exec proot-distro login "$DISTRO"

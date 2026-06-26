@@ -1,0 +1,29 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+CONFIG="$HOME/LinxMint/config/linx.conf"
+
+case "$1" in
+    show)
+        cat "$CONFIG"
+        ;;
+
+    set)
+        KEY="$2"
+        VALUE="$3"
+
+        if [ -z "$KEY" ] || [ -z "$VALUE" ]; then
+            echo "Usage: linx config set KEY VALUE"
+            exit 1
+        fi
+
+        sed -i "s/^$KEY=.*/$KEY=$VALUE/" "$CONFIG"
+        echo "$KEY gesetzt auf $VALUE"
+        ;;
+
+    *)
+        echo "LinxMint Config"
+        echo "Usage:"
+        echo "  linx config show"
+        echo "  linx config set KEY VALUE"
+        ;;
+esac
