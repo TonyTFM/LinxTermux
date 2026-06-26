@@ -1,0 +1,41 @@
+#!/bin/bash
+
+THEME_FILE="$HOME/.linx_theme"
+
+apply_theme() {
+    case "$1" in
+        mint)
+            echo "export PS1='linx@mint:\w$ '" > "$THEME_FILE"
+            ;;
+        dark)
+            echo "export PS1='linx@dark:\w$ '" > "$THEME_FILE"
+            ;;
+        retro)
+            echo "export PS1='linx@retro:\w$ '" > "$THEME_FILE"
+            ;;
+        *)
+            echo "unknown theme"
+            ;;
+    esac
+}
+
+case "$1" in
+    start)
+        proot-distro login debian
+        ;;
+    sys)
+        fastfetch 2>/dev/null || neofetch
+        ;;
+    theme)
+        apply_theme "$2"
+        ;;
+    help)
+        echo "linxctl commands:"
+        echo "  start"
+        echo "  sys"
+        echo "  theme [mint|dark|retro]"
+        ;;
+    *)
+        echo "unknown command"
+        ;;
+esac
