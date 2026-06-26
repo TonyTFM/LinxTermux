@@ -1,0 +1,12 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+clear
+
+echo "===================================="
+echo "        LINXMINT 0.1.0-alpha"
+echo "===================================="
+echo
+echo "Starting Debian..."
+sleep 1
+
+exec proot-distro login debian
