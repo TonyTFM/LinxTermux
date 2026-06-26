@@ -1,19 +1,15 @@
-# LinxMint
+# LinxMint v1.0.0
 
-LinxMint ist ein Open-Source-Projekt, das eine Linux-Mint-ähnliche
-Terminal-Umgebung auf Android mit Termux und proot-distro bereitstellt.
+A lightweight CLI Operating System layer for Termux using proot-distro.
 
-## Status
-
-Version: 0.1.0-alpha
-
-## Voraussetzungen
-
-- Termux
-- proot-distro
-- Debian
+## Features
+- Boot sequence UI
+- Dark terminal theme (ChatGPT style)
+- Session login system
+- Package manager (simple registry)
+- System commands (status, info, doctor)
+- Clean OS-like experience
 
 ## Start
-
 ```bash
-linx start
+linx
